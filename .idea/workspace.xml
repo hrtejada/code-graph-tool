@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Factorial.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/hector/tejada/cg/App$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/hector/tejada/cg/App$MethodVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/hector/tejada/cg/App.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/com/hector/tejada/cg/AppTest.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/hector/tejada/cg/App.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/App.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/com/hector/tejada/cg/AppTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/code/graph/AppTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CodeGraph.iws" />
@@ -668,7 +661,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1466897188728</updated>
-      <workItem from="1466897193380" duration="8995000" />
+      <workItem from="1466897193380" duration="9012000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1466983691806</created>
@@ -684,11 +677,18 @@
       <option name="project" value="LOCAL" />
       <updated>1466983940767</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="First Commit">
+      <created>1466985029466</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1466985029467</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8995000" />
+    <option name="totallyTimeSpent" value="9012000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
