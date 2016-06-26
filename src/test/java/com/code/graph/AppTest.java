@@ -1,4 +1,4 @@
-package com.hector.tejada.cg;
+package com.code.graph;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

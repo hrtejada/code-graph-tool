@@ -1,4 +1,4 @@
-package com.hector.tejada.cg;
+package com.code.graph;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
@@ -23,8 +23,7 @@ public class App
         System.out.println(status);
 
         // creates an input stream for the file to be parsed
-        FileInputStream in = new FileInputStream("/Users/Beto/Desktop/Factorial.java");
-
+        FileInputStream in = new FileInputStream("/Users/Beto/Desktop/Factorial.java");//If you guys are going to make changes, comment this out and add your own file. before pushing make sure to leave this original one and comment the other out.!
         CompilationUnit cu;
         try {
             // parse the file
