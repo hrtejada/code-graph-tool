@@ -40,7 +40,6 @@ public class App
         System.out.println("Visiting Methods in Factorial.java");
         new MethodVisitor().visit(cu, null);
 
-        List<Statement> methodStatements;
     }
 
     /**
@@ -61,6 +60,8 @@ public class App
             BlockStmt block = new BlockStmt();
             block = n.getBody();
             System.out.println(block.getStmts());
+            //Ok so, in Java blocks are executed as a single statement. That's why if you run this, you can see the statement separated by commas and a block is seen as a statement.
+            //What's a block in java? https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
 
             super.visit(n, arg);//Makes a note of the methods visited by marking them through VoidVisitorAdapter
 
