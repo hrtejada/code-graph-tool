@@ -12,7 +12,8 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
- * Hello world!
+ * Team 1
+ * Code Graph
  *
  */
 public class App 
