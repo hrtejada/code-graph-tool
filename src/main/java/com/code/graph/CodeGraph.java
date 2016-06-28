@@ -9,6 +9,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import com.sun.glass.ui.EventLoop;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
@@ -16,7 +17,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  * Code Graph
  *
  */
-public class App 
+public class CodeGraph
 {
     public static void main( String[] args ) throws IOException, ParseException {
 
@@ -55,11 +56,20 @@ public class App
             System.out.println(n.getName());//Gets method names.
             System.out.println(n.getBody());//Gets contents of method.
 
+            List<Statement> statements;
+
             //Test to see if we can get contents of method and set them in a block.
             System.out.print("Statements are: ");
             BlockStmt block = new BlockStmt();
             block = n.getBody();
-            System.out.println(block.getStmts());
+
+            statements = block.getStmts();
+            int x =0;
+            for(Statement statement: statements){
+                System.out.println(x + " ");
+                System.out.println(statement);
+                x++;
+            }
             //Ok so, in Java blocks are executed as a single statement. That's why if you run this, you can see the statement separated by commas and a block is seen as a statement.
             //What's a block in java? https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
 
