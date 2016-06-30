@@ -790,7 +790,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1466897188728</updated>
-      <workItem from="1466897193380" duration="19885000" />
+      <workItem from="1466897193380" duration="19896000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1466983691806</created>
@@ -862,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467327871197</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Now runs through command line arguments.">
+      <created>1467327942443</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1467327942443</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -871,7 +878,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19885000" />
+    <option name="totallyTimeSpent" value="19896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
