@@ -14,8 +14,14 @@ public class CFG {
     private List<Node> nodes;
     private List<Edge> edges;
 
-    CFG(BlockStmt block){
+    public CFG(BlockStmt block) {
         Start = block.getBeginLine();
         lineEnd = block.getEndLine();
     }
+
+    private static void getStatements(){
+
+    }
+
+
 }
