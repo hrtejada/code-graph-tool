@@ -3,13 +3,14 @@ package com.code.graph;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 import java.io.*;
 
 /**
  * Created by Beto on 6/30/16.
  */
-public class Parser {
+public class Parser extends VoidVisitorAdapter {
 
     public Parser(){
     }
@@ -29,7 +30,7 @@ public class Parser {
         }
 
         System.out.println("Visiting Methods in Factorial.java");
-        new MethodVisitor().visit(cu, null);
+        new Visitor().visit(cu, null);
 
     }
 

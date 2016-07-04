@@ -1,4 +1,4 @@
-package com.code.graph.CFG;
+package com.code.graph.Grapher;
 
 /**
  * Created by Beto on 6/26/16.
@@ -18,6 +18,14 @@ public class Edge {
 
     private Node getToNode(){
         return to;
+    }
+
+    private void changeToNode(Node newTo){
+        to = newTo;
+    }
+
+    private void changeFromNode(Node newFrom){
+        from = newFrom;
     }
 
 }

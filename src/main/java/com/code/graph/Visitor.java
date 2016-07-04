@@ -4,17 +4,17 @@ package com.code.graph;
  * Created by Beto on 6/30/16.
  */
 
-import com.code.graph.CFG.CFG;
+import com.code.graph.Grapher.CFG;
+import com.code.graph.Grapher.CFGAdapter;
+import com.code.graph.Grapher.GraphBuilder;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
-import java.util.*;
-
 /**
  * Simple visitor implementation for visiting MethodDeclaration nodes.
  */
-public class MethodVisitor extends VoidVisitorAdapter {
+public class Visitor extends VoidVisitorAdapter {
 
     @Override
     public void visit(MethodDeclaration n, Object arg) {
@@ -25,7 +25,12 @@ public class MethodVisitor extends VoidVisitorAdapter {
         BlockStmt block = new BlockStmt(); //In java methods are treated as blocks.
         block = n.getBody();
 
-        CFG cfg = new CFG(block);
+        //Builds a CFG for each method visited
+        CFG newCFG = new CFG();
+        GraphBuilder graph = new CFGAdapter(newCFG);
+        graph.printContents(block);
+        //graph.build(block);
+        //graph.createXML();
         super.visit(n, arg); //Makes a note of the methods visited by marking them through VoidVisitorAdapter
 
 
