@@ -30,7 +30,9 @@ public class Parser extends VoidVisitorAdapter {
         }
 
         System.out.println("Visiting Methods in Factorial.java");
+        System.out.println();
         new Visitor().visit(cu, null);
+        System.out.println();
 
     }
 
