@@ -61,7 +61,6 @@ public class CFGBuilder implements GraphBuilder {
         List<Statement> statements = method.getStmts();
 
         for(Statement statement: statements){
-
             if(statement instanceof ForStmt){
                 System.out.println("For Statement:");
                 ForStmt stmt = (ForStmt) statement;
