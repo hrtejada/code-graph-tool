@@ -30,61 +30,25 @@ public class Visitor extends VoidVisitorAdapter {
         GraphBuilder graph = new CFGBuilder(newCFG);
         System.out.println(n.getDeclarationAsString());
         System.out.println();
-        graph.printContents(block);
-        //graph.build(block);
+        //graph.printContents(block);
+        graph.build(block);
         //graph.createXML();
         super.visit(n, arg); //Makes a note of the methods visited by marking them through VoidVisitorAdapter
 
 
     }
 
-    @Override
-    public void visit(BlockStmt m, Object arg){
-        /* here you can access the attributes of the if statments.
-        This method will be called for all if statements in this
-        CompilationUnit, including inner class methods */
-    }
+//    @Override
+//    public void visit(BlockStmt m, Object arg){
+//        /* here you can access the attributes of the if statments.
+//        This method will be called for all if statements in this
+//        CompilationUnit, including inner class methods */
+//
+//        System.out.print("Visiting: ");
+//        System.out.println(m.getBeginLine());
+//        System.out.println(m.toStringWithoutComments());
+//        System.out.println(m.getEndLine());
+//    }
 
-    @Override
-    public void visit(IfStmt m, Object arg){
-        /* here you can access the attributes of the if statments.
-        This method will be called for all if statements in this
-        CompilationUnit, including inner class methods */
-    }
-
-    @Override
-    public void visit(ForeachStmt m, Object arg){
-        /* here you can access the attributes of the foreach statments.
-        This method will be called for all foreach statements in this
-        CompilationUnit, including inner class methods */
-    }
-
-    @Override
-    public void visit(ForStmt m, Object arg){
-        /* here you can access the attributes of the for statments.
-        This method will be called for all for statements in this
-        CompilationUnit, including inner class methods */
-    }
-
-    @Override
-    public void visit(WhileStmt m, Object arg){
-        /* here you can access the attributes of the while statments.
-        This method will be called for all while statements in this
-        CompilationUnit, including inner class methods */
-    }
-
-    @Override
-    public void visit(BreakStmt m, Object arg){
-        /* here you can access the attributes of the while statments.
-        This method will be called for all while statements in this
-        CompilationUnit, including inner class methods */
-    }
-
-    @Override
-    public void visit(SwitchStmt m, Object arg){
-        /* here you can access the attributes of the while statments.
-        This method will be called for all while statements in this
-        CompilationUnit, including inner class methods */
-    }
 
 }

@@ -28,37 +28,89 @@ public class CFGBuilder implements GraphBuilder {
         }
 
         for(Statement statement: statements){
-            statements.remove(statement);
-            if(statement instanceof ForStmt){
-                forHandler((BlockStmt) statement);
-            }
-
-            if(statement instanceof IfStmt){
-                System.out.println("This is an if statement!");
-            }
-
-            if(statement instanceof WhileStmt){
-                System.out.println("This is a while loop statement");
-            }
-
+            isConditional(statement);
         }
     }
 
+    private Boolean isConditional(Statement statement) {
+        if(statement instanceof ForStmt){
+            System.out.println("In build method");
+            System.out.println(((ForStmt) statement).getBody());
+            BlockStmt newBlock = (BlockStmt) ((ForStmt) statement).getBody();
+            forHandler(newBlock);
+            return true;
+        }
+        else if(statement instanceof IfStmt){
+            BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
+            ifHandler(newIfBlock);
 
-    public void createXML() {
-        //Create CFG XML from cfg
+            Statement elseStatement = ((IfStmt) statement).getElseStmt();
+            BlockStmt newElseBlock = (BlockStmt) ((IfStmt) elseStatement).getThenStmt();
+            elseHandler(newElseBlock);
+
+
+            return true;
+
+        }
+        else if(statement instanceof WhileStmt){
+            BlockStmt newBlock = (BlockStmt) ((WhileStmt) statement).getBody();
+            forHandler(newBlock);
+
+            return true;
+        }
+
+        else{
+            return false;
+        }
     }
 
-    private void forHandler(BlockStmt stmt){
-        List<Statement> statements = stmt.getStmts();
-        for(Statement currStatement : statements){
+    private void elseHandler(BlockStmt elseBlock) {
+        System.out.println("In elseHandler method");
+        System.out.println(elseBlock.toString());
+        List<Statement> statements = elseBlock.getStmts();
 
+        printStatements(statements);//FOr testing, remove later
+    }
+
+    private void ifHandler(BlockStmt ifBlock) {
+        System.out.println("In ifHandler method");
+        System.out.println(ifBlock.toString());
+        List<Statement> statements = ifBlock.getStmts();
+
+        printStatements(statements);//FOr testing, remove later
+    }
+
+
+    private void forHandler(BlockStmt forBlock){
+        System.out.println("In forHandler method");
+        List<Statement> statements = forBlock.getStmts();
+
+        printStatements(statements);//FOr testing, remove later
+
+        for(Statement currStatement : statements){
+            if(isConditional(currStatement)){
+                //Build something
+            }
+            else{
+                //Continue adding statements to Node
+            }
+        }
+        //Make edge to go back to top of forloop
+    }
+
+    private void printStatements(List<Statement> statements){
+        int x = 1;
+        for(Statement currStatement : statements){
+            System.out.println("Statemnt number " + x + ": ");
+            System.out.println(currStatement.toString());
+            x++;
         }
     }
 
     //This method will be removed. ONly here to show that program parses and grabs statements appropriatley.
     public void printContents(BlockStmt method){
         List<Statement> statements = method.getStmts();
+
 
         for(Statement statement: statements){
             if(statement instanceof ForStmt){
@@ -103,5 +155,9 @@ public class CFGBuilder implements GraphBuilder {
         }
         //Ok so, in Java blocks are executed as a single statement. That's why if you run this, you can see the statement separated by commas and a block is seen as a statement.
         //What's a block in java? https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
+    }
+
+    public void createXML() {
+        //Create CFG XML from cfg
     }
 }
