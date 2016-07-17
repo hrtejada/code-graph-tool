@@ -12,9 +12,13 @@ import java.util.*;
 public class Node extends com.github.javaparser.ast.Node{
     private List<Edge> goingToTransitions;
     private List<Edge> comingFromTransitions;
-    private List<Statement> content;
+    private List<Integer> statementLinesInNodes;
 
     Node(){}//Blank Constructor
+
+    Node(int lineNumber){
+        statementLinesInNodes.add(lineNumber);
+    }//Constructor with an initial statement
 
     public <R, A> R accept(GenericVisitor<R, A> genericVisitor, A a) {
         return null;
@@ -24,9 +28,9 @@ public class Node extends com.github.javaparser.ast.Node{
 
     }
 
-    Node(Statement statement){
-        content.add(statement);
-    }//Constructor with an initial statement
+    public void addLineNumbers(int lineNumber){
+        statementLinesInNodes.add(lineNumber);
+    }
 
     public void addEdgeComingFrom(Edge newEdge){
         comingFromTransitions.add(newEdge);
@@ -36,8 +40,8 @@ public class Node extends com.github.javaparser.ast.Node{
         goingToTransitions.add(newEdge);
     }
 
-    private List<Statement> getContent(){
-        return content;
+    private List<Integer> getLineNumbers(){
+        return statementLinesInNodes;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.code.graph.Grapher;
 
 import com.github.javaparser.ast.stmt.*;
+import com.sun.deploy.util.BlackList;
 
 import java.util.List;
 
@@ -24,7 +25,6 @@ public class CFGBuilder implements GraphBuilder {
         if(!cfg.startNodeSet()){
             StartNode startNode = new StartNode(method);
             cfg.setStartNode(startNode);
-            currNode = startNode;
         }
 
         for(Statement statement: statements){
@@ -32,26 +32,74 @@ public class CFGBuilder implements GraphBuilder {
         }
     }
 
+
+    /* Method to handle conditional statements such as If.
+    *
+    *
+    * */
     private Boolean isConditional(Statement statement) {
+
         if(statement instanceof ForStmt){
-            System.out.println("In build method");
-            System.out.println(((ForStmt) statement).getBody());
-            BlockStmt newBlock = (BlockStmt) ((ForStmt) statement).getBody();
-            forHandler(newBlock);
+
+            Statement expressionStatementCheck = ((ForStmt) statement).getBody();
+            Statement nestedBlockCheck = ((ForStmt) statement).getBody();
+
+            if(expressionStatementCheck instanceof ExpressionStmt){//In case if does not have brackets
+                forHandler((ExpressionStmt) expressionStatementCheck);
+            }
+
+            else if (nestedBlockCheck instanceof ForStmt){
+                BlockStmt newNestedBlock = (BlockStmt) ((ForStmt) nestedBlockCheck).getBody();
+                forHandler(newNestedBlock);
+            }
+
+            else {
+                BlockStmt newBlock = (BlockStmt) ((ForStmt) statement).getBody();
+                forHandler(newBlock);
+            }
+
             return true;
         }
-        else if(statement instanceof IfStmt){
-            BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
-            ifHandler(newIfBlock);
 
-            Statement elseStatement = ((IfStmt) statement).getElseStmt();
-            BlockStmt newElseBlock = (BlockStmt) ((IfStmt) elseStatement).getThenStmt();
-            elseHandler(newElseBlock);
+        else if(statement instanceof IfStmt){//////Refractor this hahahahaha
 
+            Statement expressionStatementCheck = ((IfStmt) statement).getThenStmt();
+            if (expressionStatementCheck  instanceof ExpressionStmt){//In case if does not have brackets
+                ifHandler((ExpressionStmt) expressionStatementCheck);
+            }
+            else {
+                BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
+                System.out.println(newIfBlock.getBeginLine());
+                ifHandler(newIfBlock);
+
+                Statement elsePart = ((IfStmt) statement).getElseStmt();
+                while (elsePart != null)
+                {
+                    if(elsePart instanceof ExpressionStmt){//In case else doesn not have brackets.
+                        elseHandler((ExpressionStmt) elsePart);
+                        break;
+                    }
+
+                    else if (elsePart instanceof BlockStmt) {//this is an "else".
+                        BlockStmt elseStmt = (BlockStmt) elsePart;
+                        elseHandler(elseStmt);
+                        break;
+                    }
+                    else {//this is an "else if".
+
+                        //Get if then statement and send to if handler.
+                        BlockStmt elseIfStmt = (BlockStmt) ((IfStmt)elsePart).getThenStmt();
+                        ifHandler(elseIfStmt);
+
+                        //Then you get the else statement and assign to elsePart.
+                        elsePart = ((IfStmt) elsePart).getElseStmt();
+                    }
+                }
+            }
 
             return true;
-
         }
+
         else if(statement instanceof WhileStmt){
             BlockStmt newBlock = (BlockStmt) ((WhileStmt) statement).getBody();
             forHandler(newBlock);
@@ -64,13 +112,23 @@ public class CFGBuilder implements GraphBuilder {
         }
     }
 
+
     private void elseHandler(BlockStmt elseBlock) {
         System.out.println("In elseHandler method");
         System.out.println(elseBlock.toString());
         List<Statement> statements = elseBlock.getStmts();
 
         printStatements(statements);//FOr testing, remove later
+        System.out.println();
     }
+
+    private void elseHandler(ExpressionStmt elseBlock) {
+        System.out.println("In elseHandler (exprs) method");
+        System.out.println(elseBlock.toString());
+        System.out.println(elseBlock.getExpression());//For testing, remove later.
+        System.out.println();
+    }
+
 
     private void ifHandler(BlockStmt ifBlock) {
         System.out.println("In ifHandler method");
@@ -78,14 +136,28 @@ public class CFGBuilder implements GraphBuilder {
         List<Statement> statements = ifBlock.getStmts();
 
         printStatements(statements);//FOr testing, remove later
+        System.out.println();
     }
 
+    private void ifHandler(ExpressionStmt ifBlock) {
+        System.out.println("In ifHandler (Exprs) method");
+        System.out.println(ifBlock.getExpression());//For testing, remove later.
+        System.out.println();
+    }
+
+    private void forHandler(ExpressionStmt expressionFor) {
+        System.out.println("In forHandler (Exprs) method");
+        System.out.println(expressionFor.getExpression());//For testing, remove later.
+        System.out.println();
+    }
 
     private void forHandler(BlockStmt forBlock){
         System.out.println("In forHandler method");
         List<Statement> statements = forBlock.getStmts();
+        System.out.println(forBlock.getBeginLine());
 
         printStatements(statements);//FOr testing, remove later
+        System.out.println();
 
         for(Statement currStatement : statements){
             if(isConditional(currStatement)){
@@ -102,6 +174,7 @@ public class CFGBuilder implements GraphBuilder {
         int x = 1;
         for(Statement currStatement : statements){
             System.out.println("Statemnt number " + x + ": ");
+            System.out.println(currStatement.getBeginLine());
             System.out.println(currStatement.toString());
             x++;
         }

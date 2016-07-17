@@ -30,25 +30,13 @@ public class Visitor extends VoidVisitorAdapter {
         GraphBuilder graph = new CFGBuilder(newCFG);
         System.out.println(n.getDeclarationAsString());
         System.out.println();
-        //graph.printContents(block);
+
         graph.build(block);
         //graph.createXML();
         super.visit(n, arg); //Makes a note of the methods visited by marking them through VoidVisitorAdapter
 
 
     }
-
-//    @Override
-//    public void visit(BlockStmt m, Object arg){
-//        /* here you can access the attributes of the if statments.
-//        This method will be called for all if statements in this
-//        CompilationUnit, including inner class methods */
-//
-//        System.out.print("Visiting: ");
-//        System.out.println(m.getBeginLine());
-//        System.out.println(m.toStringWithoutComments());
-//        System.out.println(m.getEndLine());
-//    }
 
 
 }
