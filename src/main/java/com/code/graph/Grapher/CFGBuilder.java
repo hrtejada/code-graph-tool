@@ -23,21 +23,44 @@ public class CFGBuilder implements GraphBuilder {
         Node currNode = new Node();//Gets first statement
 
         if(!cfg.startNodeSet()){
-            StartNode startNode = new StartNode(method);
+            StartNode startNode = new StartNode(method, currNode);
             cfg.setStartNode(startNode);
         }
 
         for(Statement statement: statements){
-            isConditional(statement);
+            if(isConditional(statement) == true) {
+                handleConditional(statement, currNode);
+            }
+            else{
+                currNode.addLineNumbers(statement.getBeginLine());
+            }
+
         }
     }
 
 
-    /* Method to handle conditional statements such as If.
-    *
-    *
-    * */
+    /*
+    * Method to check if current statement is a conditional.
+    */
     private Boolean isConditional(Statement statement) {
+        if(statement instanceof IfStmt){
+            return true;
+        }
+
+        else if(statement instanceof ForStmt){
+            return true;
+        }
+
+        else if(statement instanceof WhileStmt){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    private void handleConditional(Statement statement, Node currNode){
 
         if(statement instanceof ForStmt){
 
@@ -57,8 +80,6 @@ public class CFGBuilder implements GraphBuilder {
                 BlockStmt newBlock = (BlockStmt) ((ForStmt) statement).getBody();
                 forHandler(newBlock);
             }
-
-            return true;
         }
 
         else if(statement instanceof IfStmt){//////Refractor this hahahahaha
@@ -89,6 +110,7 @@ public class CFGBuilder implements GraphBuilder {
 
                         //Get if then statement and send to if handler.
                         BlockStmt elseIfStmt = (BlockStmt) ((IfStmt)elsePart).getThenStmt();
+                        System.out.println(elseIfStmt.getBeginLine());
                         ifHandler(elseIfStmt);
 
                         //Then you get the else statement and assign to elsePart.
@@ -96,22 +118,18 @@ public class CFGBuilder implements GraphBuilder {
                     }
                 }
             }
-
-            return true;
         }
 
         else if(statement instanceof WhileStmt){
             BlockStmt newBlock = (BlockStmt) ((WhileStmt) statement).getBody();
             forHandler(newBlock);
-
-            return true;
         }
 
         else{
-            return false;
+            System.out.println(statement.getBeginLine());
+            System.out.println(statement.toString());
         }
     }
-
 
     private void elseHandler(BlockStmt elseBlock) {
         System.out.println("In elseHandler method");
@@ -120,6 +138,15 @@ public class CFGBuilder implements GraphBuilder {
 
         printStatements(statements);//FOr testing, remove later
         System.out.println();
+
+        for(Statement currStatement : statements){
+            if(isConditional(currStatement)){
+                //Build something
+            }
+            else{
+                //Continue adding statements to Node
+            }
+        }
     }
 
     private void elseHandler(ExpressionStmt elseBlock) {
@@ -129,7 +156,6 @@ public class CFGBuilder implements GraphBuilder {
         System.out.println();
     }
 
-
     private void ifHandler(BlockStmt ifBlock) {
         System.out.println("In ifHandler method");
         System.out.println(ifBlock.toString());
@@ -137,6 +163,15 @@ public class CFGBuilder implements GraphBuilder {
 
         printStatements(statements);//FOr testing, remove later
         System.out.println();
+
+        for(Statement currStatement : statements){
+            if(isConditional(currStatement)){
+                //Build something
+            }
+            else{
+                //Continue adding statements to Node
+            }
+        }
     }
 
     private void ifHandler(ExpressionStmt ifBlock) {
