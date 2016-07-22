@@ -1,7 +1,6 @@
 package com.code.graph.Grapher;
 
 import com.github.javaparser.ast.stmt.*;
-import com.sun.deploy.util.BlackList;
 
 import java.util.List;
 
@@ -22,20 +21,25 @@ public class CFGBuilder implements GraphBuilder {
         List<Statement> statements = method.getStmts();
         Node currNode = new Node();//Gets first statement
 
-        if(!cfg.startNodeSet()){
+        if(cfg.startNodeSet() == false){
             StartNode startNode = new StartNode(method, currNode);
             cfg.setStartNode(startNode);
         }
 
         for(Statement statement: statements){
             if(isConditional(statement) == true) {
-                handleConditional(statement, currNode);
+                currNode = handleConditional(statement, currNode);
             }
             else{
                 currNode.addLineNumbers(statement.getBeginLine());
             }
 
         }
+
+        Node endNode = new Node(0);
+        currNode.addEdgeGoingTo(endNode);
+
+        printTree(cfg.getStartNode());
     }
 
 
@@ -60,7 +64,7 @@ public class CFGBuilder implements GraphBuilder {
         }
     }
 
-    private void handleConditional(Statement statement, Node currNode){
+    private Node handleConditional(Statement statement, Node currNode){
 
         if(statement instanceof ForStmt){
 
@@ -68,17 +72,17 @@ public class CFGBuilder implements GraphBuilder {
             Statement nestedBlockCheck = ((ForStmt) statement).getBody();
 
             if(expressionStatementCheck instanceof ExpressionStmt){//In case if does not have brackets
-                forHandler((ExpressionStmt) expressionStatementCheck);
+                currNode = forHandler((ExpressionStmt) expressionStatementCheck, currNode);
             }
 
             else if (nestedBlockCheck instanceof ForStmt){
                 BlockStmt newNestedBlock = (BlockStmt) ((ForStmt) nestedBlockCheck).getBody();
-                forHandler(newNestedBlock);
+                currNode = forHandler(newNestedBlock, currNode);
             }
 
             else {
                 BlockStmt newBlock = (BlockStmt) ((ForStmt) statement).getBody();
-                forHandler(newBlock);
+                currNode = forHandler(newBlock, currNode);
             }
         }
 
@@ -121,14 +125,15 @@ public class CFGBuilder implements GraphBuilder {
         }
 
         else if(statement instanceof WhileStmt){
-            BlockStmt newBlock = (BlockStmt) ((WhileStmt) statement).getBody();
-            forHandler(newBlock);
+            //BlockStmt newBlock = (BlockStmt) ((WhileStmt) statement).getBody();
+            //forHandler(newBlock);
         }
 
         else{
             System.out.println(statement.getBeginLine());
             System.out.println(statement.toString());
         }
+        return currNode;
     }
 
     private void elseHandler(BlockStmt elseBlock) {
@@ -180,13 +185,22 @@ public class CFGBuilder implements GraphBuilder {
         System.out.println();
     }
 
-    private void forHandler(ExpressionStmt expressionFor) {
+    private Node forHandler(ExpressionStmt expressionFor, Node start) {
+        Node currNode = new Node(expressionFor.getBeginLine());
+        start.addEdgeGoingTo(currNode);
+        currNode.addEdgeGoingTo(start);//Becase there is only one expression, this node loops back to beginning.
+
         System.out.println("In forHandler (Exprs) method");
         System.out.println(expressionFor.getExpression());//For testing, remove later.
         System.out.println();
+
+        return start; //returns start because this the cfg continues after from the start of the for loop.
     }
 
-    private void forHandler(BlockStmt forBlock){
+    private Node forHandler(BlockStmt forBlock, Node start){
+        Node currNode = new Node(forBlock.getBeginLine());
+        start.addEdgeGoingTo(currNode);//The start of the for loop immediately follows the currNode.
+
         System.out.println("In forHandler method");
         List<Statement> statements = forBlock.getStmts();
         System.out.println(forBlock.getBeginLine());
@@ -196,13 +210,16 @@ public class CFGBuilder implements GraphBuilder {
 
         for(Statement currStatement : statements){
             if(isConditional(currStatement)){
-                //Build something
+                currNode = handleConditional(currStatement, currNode);//Build something
             }
             else{
+                currNode.addLineNumbers(currStatement.getBeginLine());
                 //Continue adding statements to Node
             }
         }
-        //Make edge to go back to top of forloop
+        currNode.addEdgeGoingTo(start);//Because the last node loops back to beginning.
+        return currNode;//Make edge to go back to top of forloop
+
     }
 
     private void printStatements(List<Statement> statements){
@@ -265,7 +282,40 @@ public class CFGBuilder implements GraphBuilder {
         //What's a block in java? https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
     }
 
+    public void printTree(Node currNode){
+
+        if(currNode.getGoingToTransitions().isEmpty()){
+            System.out.println("End");
+            return;
+        }
+
+        else{
+            System.out.print(currNode.getLineNumbers().toString());
+            System.out.print(" -> ");
+
+            if(currNode.getGoingToTransitions().get(0).isVisited() == false){
+                currNode.getGoingToTransitions().get(0).visit();
+                printTree(currNode.getGoingToTransitions().get(0).getToNode());
+
+            }
+
+            if (currNode.getGoingToTransitions().get(1) != null)
+            {
+                if(currNode.getGoingToTransitions().get(1).isVisited() == false){
+                    System.out.println();
+                    System.out.print("|");
+                    printTree(currNode.getGoingToTransitions().get(1).getToNode());
+                    currNode.getGoingToTransitions().get(1).visit();
+                }
+            }
+        }
+
+//        return;
+    }
+
+
     public void createXML() {
         //Create CFG XML from cfg
     }
+
 }

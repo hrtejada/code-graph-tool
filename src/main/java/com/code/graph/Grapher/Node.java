@@ -10,8 +10,7 @@ import java.util.*;
  * Created by Beto on 6/26/16.
  */
 public class Node extends com.github.javaparser.ast.Node{
-    private List<Edge> goingToTransitions;
-    private List<Edge> comingFromTransitions;
+    private List<Edge> goingToTransitions = new ArrayList<Edge>();
     private List<Integer> statementLinesInNodes = new ArrayList<Integer>();
 
     Node(){}//Blank Constructor
@@ -28,14 +27,15 @@ public class Node extends com.github.javaparser.ast.Node{
 
     public void addLineNumbers(int lineNumber){ statementLinesInNodes.add(lineNumber); }
 
-    public void addEdgeComingFrom(Edge newEdge){
-        comingFromTransitions.add(newEdge);
-    }
-
-    public void addEdgeGoingTo(Edge newEdge){
+    public void addEdgeGoingTo(Node goingTo){
+        Edge newEdge = new Edge(this, goingTo);
         goingToTransitions.add(newEdge);
     }
 
-    private List<Integer> getLineNumbers(){ return statementLinesInNodes;}
+    public List<Integer> getLineNumbers(){ return statementLinesInNodes;}
+
+    public List<Edge> getGoingToTransitions(){
+        return goingToTransitions;
+    }
 
 }

@@ -20,13 +20,6 @@ public class CFG{
     }
 
 
-    public void addNode() {
-    }
-
-    public void addEdge() {
-
-    }
-
     private List<Statement> getSatements(){
         return statements;
     }
@@ -53,4 +46,7 @@ public class CFG{
         StartNode = start;
     }
 
+    public Node getStartNode(){
+        return StartNode;
+    }
 }
