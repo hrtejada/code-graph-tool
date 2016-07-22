@@ -6,7 +6,6 @@ package com.code.graph;
 
 import com.code.graph.Grapher.CFG;
 import com.code.graph.Grapher.CFGBuilder;
-import com.code.graph.Grapher.GraphBuilder;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
@@ -27,7 +26,7 @@ public class Visitor extends VoidVisitorAdapter {
 
         //Builds a CFG for each method visited
         CFG newCFG = new CFG();
-        GraphBuilder graph = new CFGBuilder(newCFG);
+        CFGBuilder graph = new CFG();
         System.out.println(n.getDeclarationAsString());
         System.out.println();
 
