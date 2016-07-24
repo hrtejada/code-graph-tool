@@ -10,11 +10,9 @@ import java.util.List;
  */
 public interface CFGBuilder  {
 
-    void build(BlockStmt method);
-    /*
-    * Method to check if current statement is a conditional.
-    */
-    Boolean isConditional(Statement statement);
+    void buildStart(BlockStmt method, Node next);
+
+    void buildEnd(Node last);
 
     Node handleConditional(Statement statement, Node currNode);
 
@@ -35,9 +33,10 @@ public interface CFGBuilder  {
     //This method will be removed. ONly here to show that program parses and grabs statements appropriatley.
     void printContents(BlockStmt method);
 
-    void printTree(Node currNode);
-
+    void printTree(Node start);
 
     void createXML();
+
+    CFG getCFG();
 
 }
