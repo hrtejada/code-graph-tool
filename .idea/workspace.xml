@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGplan.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Visitor.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Visitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" />
     </list>
     <ignored path="CodeGraph.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="CFGBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+            <state relative-caret-position="189">
+              <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,26 +48,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="concreteCFG.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="concreteCFG.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-91">
-              <caret line="281" column="55" selection-start-line="281" selection-start-column="55" selection-end-line="281" selection-end-column="55" />
+            <state relative-caret-position="412">
+              <caret line="104" column="129" selection-start-line="104" selection-start-column="129" selection-end-line="104" selection-end-column="129" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
                 <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
                 <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
-                <element signature="method#handleConditional#0;class#concreteCFG#0" expanded="false" />
-                <element signature="e#3821#3890#0" expanded="false" />
-                <element signature="method#elseHandler#0;class#concreteCFG#0" expanded="false" />
-                <element signature="method#elseHandler#1;class#concreteCFG#0" expanded="false" />
-                <element signature="method#ifHandler#0;class#concreteCFG#0" expanded="false" />
-                <element signature="method#ifHandler#1;class#concreteCFG#0" expanded="false" />
+                <element signature="e#4486#4555#0" expanded="false" />
+                <element signature="method#ifElseHandler#0;class#concreteCFG#0" expanded="false" />
                 <element signature="method#forHandler#0;class#concreteCFG#0" expanded="false" />
                 <element signature="method#forHandler#1;class#concreteCFG#0" expanded="false" />
                 <element signature="method#printStatements#0;class#concreteCFG#0" expanded="false" />
                 <element signature="method#printContents#0;class#concreteCFG#0" expanded="false" />
+                <element signature="method#printTree#0;class#concreteCFG#0" expanded="false" />
                 <element signature="method#createXML#0;class#concreteCFG#0" expanded="false" />
               </folding>
             </state>
@@ -78,8 +74,8 @@
       <file leaf-file-name="CFGstructure.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -88,22 +84,20 @@
       <file leaf-file-name="CFG.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="203">
+              <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
               <folding>
-                <element signature="method#setNodes#0;class#CFG#0" expanded="false" />
-                <element signature="method#joinNodes#0;class#CFG#0" expanded="false" />
                 <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CFGdirector.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CFGdirector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+            <state relative-caret-position="359">
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#isConditional#0;class#CFGdirector#0" expanded="false" />
@@ -184,12 +178,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/ConditionalBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGplan.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/newCFG.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Visitor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
       </list>
     </option>
   </component>
@@ -858,7 +852,7 @@
       <workItem from="1468695967637" duration="30307000" />
       <workItem from="1469230310630" duration="3021000" />
       <workItem from="1469317654271" duration="19000" />
-      <workItem from="1469317718785" duration="6185000" />
+      <workItem from="1469317718785" duration="15785000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1466983691806</created>
@@ -1007,7 +1001,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469231404527</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="CFG Builder - For loops done!">
+      <created>1469324477868</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1469324477868</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1016,7 +1017,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109839000" />
+    <option name="totallyTimeSpent" value="119439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -1024,17 +1025,17 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31811264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31659058" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38727078" sideWeight="0.50318474" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977098" sideWeight="0.496875" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29832572" sideWeight="0.4968153" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.54642314" sideWeight="0.4968153" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25859374" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.209375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1103,11 +1104,12 @@
     <MESSAGE value="CFG Builder - For and Ifs" />
     <MESSAGE value="CFG Builder - Seperated Conditional methods" />
     <MESSAGE value="CFG Builder - Changed Structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="CFG Builder - Changed Structure" />
+    <MESSAGE value="CFG Builder - For loops done!" />
+    <option name="LAST_COMMIT_MESSAGE" value="CFG Builder - For loops done!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1116,18 +1118,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="method#setNodes#0;class#CFG#0" expanded="false" />
-            <element signature="method#joinNodes#0;class#CFG#0" expanded="false" />
-            <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1137,16 +1127,13 @@
             <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#handleConditional#0;class#concreteCFG#0" expanded="false" />
-            <element signature="e#3821#3890#0" expanded="false" />
-            <element signature="method#elseHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#elseHandler#1;class#concreteCFG#0" expanded="false" />
-            <element signature="method#ifHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#ifHandler#1;class#concreteCFG#0" expanded="false" />
+            <element signature="e#4486#4555#0" expanded="false" />
+            <element signature="method#ifElseHandler#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#forHandler#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#forHandler#1;class#concreteCFG#0" expanded="false" />
             <element signature="method#printStatements#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#printContents#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#printTree#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#createXML#0;class#concreteCFG#0" expanded="false" />
           </folding>
         </state>
@@ -1185,8 +1172,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#setNodes#0;class#CFG#0" expanded="false" />
-            <element signature="method#joinNodes#0;class#CFG#0" expanded="false" />
             <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
           </folding>
         </state>
@@ -1201,16 +1186,13 @@
             <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#handleConditional#0;class#concreteCFG#0" expanded="false" />
-            <element signature="e#3821#3890#0" expanded="false" />
-            <element signature="method#elseHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#elseHandler#1;class#concreteCFG#0" expanded="false" />
-            <element signature="method#ifHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#ifHandler#1;class#concreteCFG#0" expanded="false" />
+            <element signature="e#4486#4555#0" expanded="false" />
+            <element signature="method#ifElseHandler#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#forHandler#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#forHandler#1;class#concreteCFG#0" expanded="false" />
             <element signature="method#printStatements#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#printContents#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#printTree#0;class#concreteCFG#0" expanded="false" />
             <element signature="method#createXML#0;class#concreteCFG#0" expanded="false" />
           </folding>
         </state>
@@ -1241,8 +1223,6 @@
         <state relative-caret-position="915">
           <caret line="279" column="40" selection-start-line="279" selection-start-column="40" selection-end-line="279" selection-end-column="40" />
           <folding>
-            <element signature="method#setNodes#0;class#CFG#0" expanded="false" />
-            <element signature="method#joinNodes#0;class#CFG#0" expanded="false" />
             <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
           </folding>
         </state>
@@ -1433,18 +1413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="method#setNodes#0;class#CFG#0" expanded="false" />
-            <element signature="method#joinNodes#0;class#CFG#0" expanded="false" />
-            <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Visitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
@@ -1452,24 +1420,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1481,45 +1431,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="281" column="55" selection-start-line="281" selection-start-column="55" selection-end-line="281" selection-end-column="55" />
+        <state relative-caret-position="105">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#handleConditional#0;class#concreteCFG#0" expanded="false" />
-            <element signature="e#3821#3890#0" expanded="false" />
-            <element signature="method#elseHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#elseHandler#1;class#concreteCFG#0" expanded="false" />
-            <element signature="method#ifHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#ifHandler#1;class#concreteCFG#0" expanded="false" />
-            <element signature="method#forHandler#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#forHandler#1;class#concreteCFG#0" expanded="false" />
-            <element signature="method#printStatements#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#printContents#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#createXML#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#addEdgeGoingTo#0;class#Node#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+        <state relative-caret-position="359">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#isConditional#0;class#CFGdirector#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+          <folding>
+            <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGstructure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="104" column="129" selection-start-line="104" selection-start-column="129" selection-end-line="104" selection-end-column="129" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
+            <element signature="e#4486#4555#0" expanded="false" />
+            <element signature="method#ifElseHandler#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#forHandler#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#forHandler#1;class#concreteCFG#0" expanded="false" />
+            <element signature="method#printStatements#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#printContents#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#printTree#0;class#concreteCFG#0" expanded="false" />
+            <element signature="method#createXML#0;class#concreteCFG#0" expanded="false" />
           </folding>
         </state>
       </provider>

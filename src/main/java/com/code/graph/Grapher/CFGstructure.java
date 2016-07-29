@@ -9,8 +9,6 @@ public interface CFGstructure {
 
     void setEndNode(Node end);
 
-    void setNodes(Node node);
-
-    void joinNodes(Node firstNode, Node secondNode);
+    Node joinNodes(Node firstNode, Node secondNode);
 
 }

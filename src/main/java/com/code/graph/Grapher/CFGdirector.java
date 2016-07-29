@@ -28,7 +28,6 @@ public class CFGdirector {
             else{
                 currNode.addLineNumbers(statement.getBeginLine());
             }
-
         }
 
         builder.buildEnd(currNode);

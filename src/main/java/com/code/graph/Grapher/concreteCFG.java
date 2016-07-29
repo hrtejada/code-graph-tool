@@ -43,6 +43,7 @@ public class concreteCFG implements CFGBuilder {
     public void buildEnd(Node last){
         Node EndNode = new Node(0);
         last.addEdgeGoingTo(EndNode);
+        cfg.setEndNode(EndNode);
     }
 
     public Node handleConditional(Statement statement, Node currNode){
@@ -70,35 +71,38 @@ public class concreteCFG implements CFGBuilder {
         }
 
         else if(statement instanceof IfStmt){//////Refractor this hahahahaha
+            BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
+            Node ifStartNode = new Node(newIfBlock.getBeginLine());// Node that begins the if-else. used to link additional else nodes
+            currNode.addEdgeGoingTo(ifStartNode);
 
             Statement expressionStatementCheck = ((IfStmt) statement).getThenStmt();
-            if (expressionStatementCheck  instanceof ExpressionStmt){//In case if does not have brackets
-                ifHandler((ExpressionStmt) expressionStatementCheck);
+            if (expressionStatementCheck  instanceof ExpressionStmt){//In case if does not have brackets. And single IF.
+                currNode = ifElseHandler((ExpressionStmt) expressionStatementCheck, ifStartNode);
             }
-            else {
-                BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
-                System.out.println(newIfBlock.getBeginLine());
-                ifHandler(newIfBlock);
 
+            else {
+                System.out.println(newIfBlock.getBeginLine());
                 Statement elsePart = ((IfStmt) statement).getElseStmt();
                 while (elsePart != null)
                 {
-                    if(elsePart instanceof ExpressionStmt){//In case else doesn not have brackets.
-                        elseHandler((ExpressionStmt) elsePart);
+                    if(elsePart instanceof ExpressionStmt){//In case else does not have brackets.
+                        currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler((ExpressionStmt) elsePart, ifStartNode));
+                        //elseHandler((ExpressionStmt) elsePart);//Moved to the above method call
                         break;
                     }
 
                     else if (elsePart instanceof BlockStmt) {//this is an "else".
                         BlockStmt elseStmt = (BlockStmt) elsePart;
-                        elseHandler(elseStmt);
+                        currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler(elseStmt, ifStartNode));
+                        //elseHandler(elseStmt);//Moved to the above method call
                         break;
                     }
-                    else {//this is an "else if".
+                    else {//this is an "else if". //This will kill me...
 
                         //Get if then statement and send to if handler.
                         BlockStmt elseIfStmt = (BlockStmt) ((IfStmt)elsePart).getThenStmt();
                         System.out.println(elseIfStmt.getBeginLine());
-                        ifHandler(elseIfStmt);
+                        currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler(elseIfStmt, ifStartNode));
 
                         //Then you get the else statement and assign to elsePart.
                         elsePart = ((IfStmt) elsePart).getElseStmt();
@@ -119,53 +123,37 @@ public class concreteCFG implements CFGBuilder {
         return currNode;
     }
 
-    public void elseHandler(BlockStmt elseBlock) {
-        System.out.println("In elseHandler method");
-        System.out.println(elseBlock.toString());
-        List<Statement> statements = elseBlock.getStmts();
-
-        printStatements(statements);//FOr testing, remove later
-        System.out.println();
-
-        for(Statement currStatement : statements){
-            if(isConditional(currStatement)){
-                //Build something
-            }
-            else{
-                //Continue adding statements to Node
-            }
-        }
-    }
-
-    public void elseHandler(ExpressionStmt elseBlock) {
-        System.out.println("In elseHandler (exprs) method");
-        System.out.println(elseBlock.toString());
-        System.out.println(elseBlock.getExpression());//For testing, remove later.
-        System.out.println();
-    }
-
-    public void ifHandler(BlockStmt ifBlock) {
+    public Node ifElseHandler(BlockStmt ifBlock, Node ifStart) {
         System.out.println("In ifHandler method");
         System.out.println(ifBlock.toString());
         List<Statement> statements = ifBlock.getStmts();
 
-        printStatements(statements);//FOr testing, remove later
+        Node currNode = new Node();
+        ifStart.addEdgeGoingTo(currNode);
+
+        printStatements(statements);//For testing, remove later
         System.out.println();
 
-        for(Statement currStatement : statements){
-            if(isConditional(currStatement)){
-                //Build something
+        for(Statement statement : statements){
+            if(isConditional(statement)){
+                currNode = handleConditional(statement, currNode);
             }
             else{
-                //Continue adding statements to Node
+                currNode.addLineNumbers(statement.getBeginLine());
             }
         }
+        return currNode;
     }
 
-    public void ifHandler(ExpressionStmt ifBlock) {
-        System.out.println("In ifHandler (Exprs) method");
+    public Node ifElseHandler(ExpressionStmt ifBlock, Node ifStart) {
+        Node expressionNode = new Node(ifBlock.getBeginLine());
+        ifStart.addEdgeGoingTo(expressionNode);
+
+        System.out.println("In ifHandler (Exprs) method");//Testing
         System.out.println(ifBlock.getExpression());//For testing, remove later.
         System.out.println();
+
+        return expressionNode;
     }
 
     public Node forHandler(ExpressionStmt expressionFor, Node start) {
@@ -224,7 +212,7 @@ public class concreteCFG implements CFGBuilder {
             System.out.println(currStatement.toString());
             x++;
         }
-    }
+    }//Will be removed later.
 
     //This method will be removed. ONly here to show that program parses and grabs statements appropriatley.
     public void printContents(BlockStmt method){

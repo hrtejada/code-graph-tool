@@ -16,13 +16,9 @@ public interface CFGBuilder  {
 
     Node handleConditional(Statement statement, Node currNode);
 
-    void elseHandler(BlockStmt elseBlock);
+    Node ifElseHandler(BlockStmt ifBlock, Node ifStart);
 
-    void elseHandler(ExpressionStmt elseBlock);
-
-    void ifHandler(BlockStmt ifBlock);
-
-    void ifHandler(ExpressionStmt ifBlock);
+    Node ifElseHandler(ExpressionStmt ifBlock, Node ifStart);
 
     Node forHandler(ExpressionStmt expressionFor, Node start);
 

@@ -25,18 +25,13 @@ public class CFG implements CFGstructure{
         EndNode = end;
     }
 
-    //receives a node that is holds a reference to a chunk of nodes. Iteratre over to find the last node
-    public void setNodes(Node node) {
-        //Visit the chunk of nodes and find the curr node and set it.
-    }
-
-    public void joinNodes(Node firstNode, Node secondNode) {
+    public Node joinNodes(Node firstNode, Node secondNode) {
         Node Join = new Node(0);
 
         firstNode.addEdgeGoingTo(Join);
         secondNode.addEdgeGoingTo(Join);
 
-        currNode = Join;
+        return Join;
     }
 
     public boolean startNodeSet() {
