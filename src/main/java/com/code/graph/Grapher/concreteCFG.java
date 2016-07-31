@@ -4,7 +4,6 @@ import com.github.javaparser.ast.stmt.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.util.List;
 import java.util.Stack;
 
@@ -41,7 +40,7 @@ public class concreteCFG implements CFGBuilder {
 
     public void buildStart(BlockStmt method, Node next){
         if(cfg.startNodeSet() == false){
-            StartNode startNode = new StartNode(method, next);
+            startNode startNode = new startNode(method, next);
             cfg.setStartNode(startNode);
         }
     }
