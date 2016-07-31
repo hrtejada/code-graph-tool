@@ -12,6 +12,7 @@ import java.util.*;
 public class Node extends com.github.javaparser.ast.Node{
     private List<Edge> goingToTransitions = new ArrayList<Edge>();
     private List<Integer> statementLinesInNodes = new ArrayList<Integer>();
+    private Boolean visit = false;
 
     Node(){}//Blank Constructor
 
@@ -37,5 +38,11 @@ public class Node extends com.github.javaparser.ast.Node{
     public List<Edge> getGoingToTransitions(){
         return goingToTransitions;
     }
+
+    public void visit(){
+        visit = true;
+    }
+
+    public Boolean isVisited(){ return visit;}
 
 }

@@ -17,9 +17,8 @@ public class CFGdirector {
 
     public void buildCFG(BlockStmt method) {
         List<Statement> statements = method.getStmts();
-        Node currNode = new Node();//Gets first statement
+        Node currNode = new Node();
         builder.buildStart(method, currNode);
-        currNode = builder.getCFG().getStartNode();
 
         for(Statement statement: statements){
             if(isConditional(statement) == true) {

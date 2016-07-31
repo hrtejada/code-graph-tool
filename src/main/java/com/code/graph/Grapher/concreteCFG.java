@@ -2,7 +2,11 @@ package com.code.graph.Grapher;
 
 import com.github.javaparser.ast.stmt.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Beto on 7/22/16.
@@ -10,6 +14,8 @@ import java.util.List;
 public class concreteCFG implements CFGBuilder {
 
     private CFG cfg;
+    BufferedWriter writer = null;
+    File dotFile = new File("cfg.txt");
 
     public concreteCFG(CFG newCFG){
         this.cfg = newCFG;
@@ -47,6 +53,7 @@ public class concreteCFG implements CFGBuilder {
     }
 
     public Node handleConditional(Statement statement, Node currNode){
+        Stack<Node> joinNodes = new Stack<Node>();
 
         if(statement instanceof ForStmt){
 
@@ -71,9 +78,10 @@ public class concreteCFG implements CFGBuilder {
         }
 
         else if(statement instanceof IfStmt){//////Refractor this hahahahaha
-            BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
-            Node ifStartNode = new Node(newIfBlock.getBeginLine());// Node that begins the if-else. used to link additional else nodes
-            currNode.addEdgeGoingTo(ifStartNode);
+
+            // Node that begins the if-else. used to link additional else nodes
+            currNode.addLineNumbers(statement.getBeginLine());
+            Node ifStartNode = currNode;
 
             Statement expressionStatementCheck = ((IfStmt) statement).getThenStmt();
             if (expressionStatementCheck  instanceof ExpressionStmt){//In case if does not have brackets. And single IF.
@@ -81,33 +89,53 @@ public class concreteCFG implements CFGBuilder {
             }
 
             else {
+                BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
                 System.out.println(newIfBlock.getBeginLine());
+                joinNodes.push(ifElseHandler(newIfBlock, currNode));
+
+
                 Statement elsePart = ((IfStmt) statement).getElseStmt();
                 while (elsePart != null)
                 {
                     if(elsePart instanceof ExpressionStmt){//In case else does not have brackets.
-                        currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler((ExpressionStmt) elsePart, ifStartNode));
+                        //currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler((ExpressionStmt) elsePart, ifStartNode));
                         //elseHandler((ExpressionStmt) elsePart);//Moved to the above method call
-                        break;
+                        joinNodes.push(ifElseHandler((ExpressionStmt) elsePart, ifStartNode));
+                        elsePart = null;//Beto changed from break to this.
                     }
 
                     else if (elsePart instanceof BlockStmt) {//this is an "else".
                         BlockStmt elseStmt = (BlockStmt) elsePart;
-                        currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler(elseStmt, ifStartNode));
+                        //currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler(elseStmt, ifStartNode));
                         //elseHandler(elseStmt);//Moved to the above method call
-                        break;
+                        joinNodes.push(ifElseHandler(elseStmt, ifStartNode));
+                        elsePart = null;//Beto changed from break to this.
                     }
                     else {//this is an "else if". //This will kill me...
 
                         //Get if then statement and send to if handler.
                         BlockStmt elseIfStmt = (BlockStmt) ((IfStmt)elsePart).getThenStmt();
                         System.out.println(elseIfStmt.getBeginLine());
-                        currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler(elseIfStmt, ifStartNode));
+
+                        Node elseIfStartNode = new Node(elseIfStmt.getBeginLine());
+                        ifStartNode.addEdgeGoingTo(elseIfStartNode);
+                        joinNodes.push(ifElseHandler(elseIfStmt, elseIfStartNode));
+                        //currNode = cfg.joinNodes(ifElseHandler(newIfBlock, ifStartNode), ifElseHandler(elseIfStmt, elseIfStartNode));
+                        ifStartNode = elseIfStartNode;
 
                         //Then you get the else statement and assign to elsePart.
                         elsePart = ((IfStmt) elsePart).getElseStmt();
                     }
                 }
+                while (joinNodes.size() > 1)
+                {
+                    Node join = joinNodes.pop();
+                    Node block = joinNodes.pop();
+
+                    joinNodes.push(cfg.joinNodes(join, block));
+                }
+
+                currNode = joinNodes.pop();
             }
         }
 
@@ -153,7 +181,7 @@ public class concreteCFG implements CFGBuilder {
         System.out.println(ifBlock.getExpression());//For testing, remove later.
         System.out.println();
 
-        return expressionNode;
+        return cfg.joinNodes(ifStart, expressionNode);
     }
 
     public Node forHandler(ExpressionStmt expressionFor, Node start) {
@@ -170,7 +198,9 @@ public class concreteCFG implements CFGBuilder {
         System.out.println(expressionFor.getExpression());//For testing, remove later.
         System.out.println();
 
-        return forHead; //returns start because this the cfg continues after from the start of the for loop.
+        Node afterHead = new Node();
+        forHead.addEdgeGoingTo(afterHead);
+        return afterHead; //returns start because this the cfg continues after from the start of the for loop.
     }
 
     public Node forHandler(BlockStmt forBlock, Node start){
@@ -200,7 +230,9 @@ public class concreteCFG implements CFGBuilder {
             }
         }
         currNode.addEdgeGoingTo(forHead);//Because the last node loops back to beginning.
-        return forHead;//Always return forHead. This is essentially the start and end for the control of a for block in cfg.
+        Node afterHead = new Node();//New empty node to be passed to continue creation
+        forHead.addEdgeGoingTo(afterHead);
+        return afterHead;
 
     }
 
@@ -266,29 +298,65 @@ public class concreteCFG implements CFGBuilder {
 
     public void printTree(Node start){
         Node currNode = start;
+        Node prev;
 
-        if(currNode.getGoingToTransitions().isEmpty()){
+        if(currNode.isVisited() == true || currNode.getGoingToTransitions().isEmpty()){
             return;
         }
+        else{
+            currNode.visit();
+            for(int y = 0; y < currNode.getGoingToTransitions().size(); y++){
+                System.out.print('"');
+                for(int x = 0; x < currNode.getLineNumbers().size(); x++){
+                    if (x > 0) {
+                        System.out.print(",");
 
-        else {
-            System.out.print(currNode.getLineNumbers().toString());
-            System.out.print(" -> ");
+                    }
+                    System.out.print(currNode.getLineNumbers().get(x));
+                }
+                System.out.print('"');
 
-            if(currNode.getGoingToTransitions().get(0) != null && currNode.getGoingToTransitions().get(0).isVisited() == false){
-                currNode.getGoingToTransitions().get(0).visit();
-                printTree(currNode.getGoingToTransitions().get(0).getToNode());
+                System.out.print(" -> ");
 
-            }
+                System.out.print('"');
+                prev = currNode;
+                currNode = prev.getGoingToTransitions().get(y).getToNode();
+                for(int x = 0; x < currNode.getLineNumbers().size(); x++){
+                    if (x > 0) {
+                        System.out.print(",");
 
-
-            if(currNode.getGoingToTransitions().size() > 1 && currNode.getGoingToTransitions().get(1).isVisited() == false){
+                    }
+                    System.out.print(currNode.getLineNumbers().get(x));
+                }
+                System.out.print('"');
                 System.out.println();
-                System.out.print("|");
-                printTree(currNode.getGoingToTransitions().get(1).getToNode());
-                currNode.getGoingToTransitions().get(1).visit();
+                printTree(currNode);
+                currNode = prev;
             }
         }
+
+
+//        if(currNode.getGoingToTransitions().isEmpty()){
+//            return;
+//        }
+//
+//        else {
+//            System.out.print(currNode.getLineNumbers().toString());
+//            System.out.print(" -> ");
+//
+//            if(currNode.getGoingToTransitions().size() > 1 && currNode.getGoingToTransitions().get(1).isVisited() == false){
+//                System.out.println();
+//                System.out.print("|");
+//                printTree(currNode.getGoingToTransitions().get(1).getToNode());
+//                currNode.getGoingToTransitions().get(1).visit();
+//            }
+//
+//            if(currNode.getGoingToTransitions().get(0) != null && currNode.getGoingToTransitions().get(0).isVisited() == false){
+//                currNode.getGoingToTransitions().get(0).visit();
+//                printTree(currNode.getGoingToTransitions().get(0).getToNode());
+//
+//            }
+//        }
     }
 
     public void createXML() {
@@ -298,5 +366,53 @@ public class concreteCFG implements CFGBuilder {
     public CFG getCFG() {
         return this.cfg;
     }
+
+//    public void createDotFile(Node start){
+//        try {
+//
+//            // This will output the full path where the file will be written to...just to check
+//            System.out.println(dotFile.getCanonicalPath());
+//
+//            writer = new BufferedWriter(new FileWriter(dotFile));
+//
+//            Node currNode = start;
+//
+//            if(currNode.getGoingToTransitions().isEmpty()){
+//                return;
+//            }
+//
+//            else {
+//                writer.write('"');
+//                for(int x = 0; x < currNode.getLineNumbers().size(); x++){
+//                    writer.write(currNode.getLineNumbers().toString());
+//                }
+//                writer.write('"');
+//                writer.write(" -> ");
+//
+//                if(currNode.getGoingToTransitions().size() > 1 && currNode.getGoingToTransitions().get(1).isVisited() == false){
+//                    System.out.println();
+//                    System.out.print("|");
+//                    printTree(currNode.getGoingToTransitions().get(1).getToNode());
+//                    currNode.getGoingToTransitions().get(1).visit();
+//                }
+//
+//                if(currNode.getGoingToTransitions().get(0) != null && currNode.getGoingToTransitions().get(0).isVisited() == false){
+//                    currNode.getGoingToTransitions().get(0).visit();
+//                    printTree(currNode.getGoingToTransitions().get(0).getToNode());
+//
+//                }
+//            }
+//
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // Close the writer regardless of what happens...
+//                writer.close();
+//            } catch (Exception e) {
+//            }
+//        }
+//    }
 
 }

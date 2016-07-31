@@ -13,6 +13,7 @@ public class CFG implements CFGstructure{
     private Node StartNode;
     private Node EndNode;
     private Node currNode;
+    private static int joinCounter = 0;
 
     public CFG() {
     }
@@ -27,6 +28,8 @@ public class CFG implements CFGstructure{
 
     public Node joinNodes(Node firstNode, Node secondNode) {
         Node Join = new Node(0);
+        Join.addLineNumbers(joinCounter);
+        joinCounter++;
 
         firstNode.addEdgeGoingTo(Join);
         secondNode.addEdgeGoingTo(Join);
