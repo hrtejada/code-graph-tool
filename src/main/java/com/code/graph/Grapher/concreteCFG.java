@@ -46,15 +46,26 @@ public class concreteCFG implements CFGBuilder {
     }
 
     public void buildEnd(Node last){
-        Node EndNode = new Node(0);
-        last.addEdgeGoingTo(EndNode);
-        cfg.setEndNode(EndNode);
+        if(last.getLineNumbers().isEmpty()){
+            last.addLineNumbers(0);
+            cfg.setEndNode(last);
+        }
+        else{
+            Node EndNode = new Node(0);
+            last.addEdgeGoingTo(EndNode);
+            cfg.setEndNode(EndNode);
+        }
     }
 
     public Node handleConditional(Statement statement, Node currNode){
         Stack<Node> joinNodes = new Stack<Node>();
 
         if(statement instanceof ForStmt){
+            if(!currNode.getLineNumbers().isEmpty()){
+                Node temp = new Node();
+                currNode.addEdgeGoingTo(temp);
+                currNode = temp;
+            }
 
             Statement expressionStatementCheck = ((ForStmt) statement).getBody();
             Statement nestedBlockCheck = ((ForStmt) statement).getBody();
@@ -199,23 +210,21 @@ public class concreteCFG implements CFGBuilder {
 
         Node afterHead = new Node();
         forHead.addEdgeGoingTo(afterHead);
-        return afterHead; //returns start because this the cfg continues after from the start of the for loop.
+        return forHead; //returns start because this the cfg continues after from the start of the for loop.
     }
 
     public Node forHandler(BlockStmt forBlock, Node start){
-        Node forHead = new Node(forBlock.getBeginLine());
-        start.addEdgeGoingTo(forHead);//The start of the for loop immediately follows the startNode.
+        Node forHead = start;
+        List<Statement> statements = forBlock.getStmts();//get statements in for loop.
+        forHead.addLineNumbers(forBlock.getBeginLine());
+        Node firstStatementNode = new Node();//Node immediately after the for loop init.
+        forHead.addEdgeGoingTo(firstStatementNode);
 
-        Node currNode = forHead;//separate head so it does not get lost.
+        Node currNode = firstStatementNode;//separate head so it does not get lost.
 
 
         System.out.println("In forHandler method");
         System.out.println(forBlock.getBeginLine());
-
-        List<Statement> statements = forBlock.getStmts();//get statements in for loop.
-        Node firstStatementNode = new Node();//Node immediately after the for loop init.
-        currNode.addEdgeGoingTo(firstStatementNode);
-        currNode = firstStatementNode;
 
         printStatements(statements);//For testing, remove later
         System.out.println();
@@ -333,29 +342,6 @@ public class concreteCFG implements CFGBuilder {
                 currNode = prev;
             }
         }
-
-
-//        if(currNode.getGoingToTransitions().isEmpty()){
-//            return;
-//        }
-//
-//        else {
-//            System.out.print(currNode.getLineNumbers().toString());
-//            System.out.print(" -> ");
-//
-//            if(currNode.getGoingToTransitions().size() > 1 && currNode.getGoingToTransitions().get(1).isVisited() == false){
-//                System.out.println();
-//                System.out.print("|");
-//                printTree(currNode.getGoingToTransitions().get(1).getToNode());
-//                currNode.getGoingToTransitions().get(1).visit();
-//            }
-//
-//            if(currNode.getGoingToTransitions().get(0) != null && currNode.getGoingToTransitions().get(0).isVisited() == false){
-//                currNode.getGoingToTransitions().get(0).visit();
-//                printTree(currNode.getGoingToTransitions().get(0).getToNode());
-//
-//            }
-//        }
     }
 
     public void createXML() {
