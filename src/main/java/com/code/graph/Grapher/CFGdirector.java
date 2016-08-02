@@ -31,8 +31,8 @@ public class CFGdirector {
         }
 
         builder.buildEnd(currNode);
-        //builder.createXML();
-        builder.printTree(builder.getCFG().getStartNode());
+        builder.createXML();
+        //builder.printTree(builder.getCFG().getStartNode());
         System.out.println(" End");
     }
 

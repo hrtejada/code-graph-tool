@@ -1,8 +1,10 @@
-package com.code.graph.Grapher;
+package com.code.graph;
+
+import com.code.graph.Grapher.CFG;
+import com.code.graph.Grapher.Node;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -38,7 +40,7 @@ public class XML {
         }
         closeWriter();
 
-        resetAllNodesVisit(cfg.getStartNode());
+        //resetAllNodesVisit(cfg.getStartNode());
     }
 
     private void createFile()

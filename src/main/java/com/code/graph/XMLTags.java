@@ -1,4 +1,4 @@
-package com.code.graph.Grapher;
+package com.code.graph;
 
 import java.io.File;
 import java.io.PrintWriter;
