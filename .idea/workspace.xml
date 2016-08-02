@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java" />
     </list>
     <ignored path="CodeGraph.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="concreteCFG.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="concreteCFG.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
@@ -87,6 +87,16 @@
                 <element signature="method#joinNodes#0;class#CFG#0" expanded="false" />
                 <element signature="method#startNodeSet#0;class#CFG#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="startNode.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -168,8 +178,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java" />
       </list>
     </option>
   </component>
@@ -277,6 +287,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="graph" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CodeGraph" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CodeGraph" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graph" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Grapher" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -811,7 +851,7 @@
       <workItem from="1469317718785" duration="36282000" />
       <workItem from="1470000000612" duration="5485000" />
       <workItem from="1470008928298" duration="116000" />
-      <workItem from="1470009122060" duration="7943000" />
+      <workItem from="1470009122060" duration="8206000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1466983691806</created>
@@ -974,7 +1014,14 @@
       <option name="project" value="LOCAL" />
       <updated>1469752742365</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="CFG Builder - If statements done!">
+      <created>1470099961746</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1470099961746</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -983,7 +1030,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153480000" />
+    <option name="totallyTimeSpent" value="153743000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -1433,14 +1480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -1524,6 +1563,14 @@
             <element signature="method#createXML#0;class#concreteCFG#0" expanded="false" />
             <element signature="e#13679#13723#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/startNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
