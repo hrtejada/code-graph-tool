@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="XML Classes Added">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XML.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/XML.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XMLTags.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/XMLTags.java" />
+    <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java" />
     </list>
     <ignored path="CodeGraph.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,20 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="XML.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/XML.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
+            <state relative-caret-position="435">
               <caret line="41" column="21" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="21" />
               <folding>
                 <element signature="e#1217#1218#0" expanded="true" />
@@ -71,7 +57,7 @@
       <file leaf-file-name="CFG.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
+            <state relative-caret-position="569">
               <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
@@ -91,14 +77,9 @@
       <file leaf-file-name="concreteCFG.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4035">
-              <caret line="345" column="28" selection-start-line="345" selection-start-column="28" selection-end-line="345" selection-end-column="28" />
-              <folding>
-                <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
-                <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
-                <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
-                <element signature="method#printTree#0;class#concreteCFG#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="5190">
+              <caret line="347" column="28" selection-start-line="347" selection-start-column="28" selection-end-line="347" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,9 +87,11 @@
       <file leaf-file-name="CFGdirector.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
+            <state relative-caret-position="419">
               <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
               <folding>
+                <element signature="e#282#283#0" expanded="true" />
+                <element signature="e#323#324#0" expanded="true" />
                 <element signature="method#isConditional#0;class#CFGdirector#0" expanded="false" />
               </folding>
             </state>
@@ -131,7 +114,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="33d5b990993dfc57386c27202e995672d487ad37" />
+        <entry key="$PROJECT_DIR$" value="cfgbuild" />
       </map>
     </option>
     <option name="RESET_MODE" value="HARD" />
@@ -203,6 +186,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="726" />
@@ -875,7 +859,7 @@
       <workItem from="1469230310630" duration="267000" />
       <workItem from="1470100323956" duration="7393000" />
       <workItem from="1470164748377" duration="1841000" />
-      <workItem from="1470169452037" duration="1922000" />
+      <workItem from="1470169452037" duration="2266000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1466983691806</created>
@@ -1031,7 +1015,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470101128189</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="XML Class fix">
+      <created>1470180194287</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1470180194287</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1040,11 +1031,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112037000" />
+    <option name="totallyTimeSpent" value="112381000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="726" extended-state="6" />
-    <editor active="false" />
+    <frame x="1" y="23" width="1280" height="726" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1127,7 +1118,8 @@
     <MESSAGE value="CFG Builder - For and Ifs" />
     <MESSAGE value="CFG Builder - Seperated Conditional methods" />
     <MESSAGE value="XML Classes Added" />
-    <option name="LAST_COMMIT_MESSAGE" value="XML Classes Added" />
+    <MESSAGE value="XML Class fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="XML Class fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1388,7 +1380,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
+        <state relative-caret-position="435">
           <caret line="41" column="21" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="21" />
           <folding>
             <element signature="e#1217#1218#0" expanded="true" />
@@ -1440,7 +1432,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
+        <state relative-caret-position="569">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
@@ -1448,14 +1440,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/concreteCFG.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4035">
-          <caret line="345" column="28" selection-start-line="345" selection-start-column="28" selection-end-line="345" selection-end-column="28" />
-          <folding>
-            <element signature="method#isConditional#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#buildStart#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#buildEnd#0;class#concreteCFG#0" expanded="false" />
-            <element signature="method#printTree#0;class#concreteCFG#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="5190">
+          <caret line="347" column="28" selection-start-line="347" selection-start-column="28" selection-end-line="347" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1477,9 +1464,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
+        <state relative-caret-position="419">
           <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
           <folding>
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#323#324#0" expanded="true" />
             <element signature="method#isConditional#0;class#CFGdirector#0" expanded="false" />
           </folding>
         </state>
