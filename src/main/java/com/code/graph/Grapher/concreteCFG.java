@@ -4,6 +4,7 @@ import com.github.javaparser.ast.stmt.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Stack;
 
@@ -13,8 +14,6 @@ import java.util.Stack;
 public class concreteCFG implements CFGBuilder {
 
     private CFG cfg;
-    BufferedWriter writer = null;
-    File dotFile = new File("cfg.txt");
 
     public concreteCFG(CFG newCFG){
         this.cfg = newCFG;
@@ -300,8 +299,6 @@ public class concreteCFG implements CFGBuilder {
                 System.out.println();
             }
         }
-        //Ok so, in Java blocks are executed as a single statement. That's why if you run this, you can see the statement separated by commas and a block is seen as a statement.
-        //What's a block in java? https://docs.oracle.com/javase/tutorial/java/nutsandbolts/expressions.html
     }
 
     public void printTree(Node start){
@@ -345,59 +342,17 @@ public class concreteCFG implements CFGBuilder {
     }
 
     public void createXML() {
-        //Create CFG XML from cfg
+        try {
+            XML xml = new XML(getCFG());
+            xml.createXML();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public CFG getCFG() {
         return this.cfg;
     }
 
-//    public void createDotFile(Node start){
-//        try {
-//
-//            // This will output the full path where the file will be written to...just to check
-//            System.out.println(dotFile.getCanonicalPath());
-//
-//            writer = new BufferedWriter(new FileWriter(dotFile));
-//
-//            Node currNode = start;
-//
-//            if(currNode.getGoingToTransitions().isEmpty()){
-//                return;
-//            }
-//
-//            else {
-//                writer.write('"');
-//                for(int x = 0; x < currNode.getLineNumbers().size(); x++){
-//                    writer.write(currNode.getLineNumbers().toString());
-//                }
-//                writer.write('"');
-//                writer.write(" -> ");
-//
-//                if(currNode.getGoingToTransitions().size() > 1 && currNode.getGoingToTransitions().get(1).isVisited() == false){
-//                    System.out.println();
-//                    System.out.print("|");
-//                    printTree(currNode.getGoingToTransitions().get(1).getToNode());
-//                    currNode.getGoingToTransitions().get(1).visit();
-//                }
-//
-//                if(currNode.getGoingToTransitions().get(0) != null && currNode.getGoingToTransitions().get(0).isVisited() == false){
-//                    currNode.getGoingToTransitions().get(0).visit();
-//                    printTree(currNode.getGoingToTransitions().get(0).getToNode());
-//
-//                }
-//            }
-//
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                // Close the writer regardless of what happens...
-//                writer.close();
-//            } catch (Exception e) {
-//            }
-//        }
-//    }
 
 }

@@ -50,11 +50,6 @@ public class CFG implements CFGstructure{
         return StartNode;
     }
 
-    public Node getEndNode(){
-        return EndNode;
-    }
 
-    public Node getCurrNode(){
-        return currNode;
-    }
+
 }

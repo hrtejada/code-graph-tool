@@ -10,7 +10,7 @@ import java.util.Stack;
  */
 public class XML {
 
-    private final File newFile = new File("C:\\Users\\Daniel\\Desktop\\test");
+    private final File newFile = new File("/Users/Beto/Desktop/cfg.xml");
 
     private FileWriter fw;
     private BufferedWriter bw;
@@ -20,46 +20,6 @@ public class XML {
 
     private XMLTags currTag;
 
-//    public static void main(String[] args)
-//    {
-//        try {
-//            new XML();
-//        }catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
-//    public XML()
-//    {
-//        Node start = new Node(11);
-//        Node end = new Node(12);
-//
-//        CFG cfg = new CFG();
-//        cfg.setEndNode(end);
-//        cfg.setStartNode(start);
-//
-//        Node node1 = new Node(1);
-//        Node node2 = new Node(2);
-//        Node node3 = new Node(3);
-//        Node join = new Node(0);
-//
-//        start.addEdgeGoingTo(node1);
-//
-//        node1.addEdgeGoingTo(node2);
-//        node1.addEdgeGoingTo(node3);
-//
-//        node2.addEdgeGoingTo(join);
-//
-//        node3.addEdgeGoingTo(join);
-//
-//        join.addEdgeGoingTo(end);
-//
-//        this.cfg = cfg;
-//
-//        createXML();
-//    }
 
     public XML(CFG cfg) throws FileNotFoundException {
         this.cfg = cfg;
@@ -123,6 +83,7 @@ public class XML {
 
     private void goThroughCFG(Node currNode)
     {
+        currNode.visit();
         if (currNode.getGoingToTransitions().isEmpty()) //END empty Node
         {
             currTag = new XMLTags(currNode.getLineNumbers().toString(), "END");
@@ -168,7 +129,7 @@ public class XML {
                 goThroughCFG(secondNode);
             }
 
-            currNode.visit();
+            //currNode.visit();
         }
     }
 
