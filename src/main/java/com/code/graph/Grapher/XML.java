@@ -1,6 +1,8 @@
 package com.code.graph.Grapher;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -75,6 +77,8 @@ public class XML {
             printLine(currTag.getEndTag());
         }
         closeWriter();
+
+        resetAllNodesVisit(cfg.getStartNode());
     }
 
     private void createFile()
@@ -165,6 +169,21 @@ public class XML {
             }
 
             currNode.visit();
+        }
+    }
+
+    private ArrayList<Node> check = new ArrayList<Node>();
+    private void resetAllNodesVisit(Node currNode)
+    {
+        currNode.resetVisit();
+
+        check.add(currNode);
+
+        for (int i = 0; i < currNode.getGoingToTransitions().size(); i++)
+        {
+            Node next = currNode.getGoingToTransitions().get(i).getToNode();
+            if (!check.contains(next))
+                resetAllNodesVisit(next);
         }
     }
 }

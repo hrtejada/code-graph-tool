@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="XML Classes Added">
+    <list default="true" id="41a57eed-c9b7-450c-a699-2d9f64f23791" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XML.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XML.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XMLTags.java" afterPath="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XMLTags.java" />
     </list>
     <ignored path="CodeGraph.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,10 +36,11 @@
       <file leaf-file-name="XML.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XML.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3050">
-              <caret line="123" column="79" selection-start-line="123" selection-start-column="79" selection-end-line="123" selection-end-column="79" />
+            <state relative-caret-position="344">
+              <caret line="186" column="9" selection-start-line="186" selection-start-column="9" selection-end-line="186" selection-end-column="9" />
               <folding>
-                <element signature="e#345#354#0" expanded="true" />
+                <element signature="e#397#406#0" expanded="true" />
+                <element signature="e#4314#4320#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,6 +82,21 @@
             <state relative-caret-position="625">
               <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+              <folding>
+                <element signature="e#1217#1218#0" expanded="true" />
+                <element signature="e#1245#1246#0" expanded="true" />
+                <element signature="e#1281#1282#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,7 +156,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/StatementHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/StartNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/EndNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Edge.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/ConditionalBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGBuilder.java" />
@@ -149,6 +164,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFG.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/CFGdirector.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XMLTags.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XML.java" />
       </list>
     </option>
@@ -840,7 +856,7 @@
       <workItem from="1467948826758" duration="20385000" />
       <workItem from="1468695967637" duration="30307000" />
       <workItem from="1469230310630" duration="267000" />
-      <workItem from="1470100323956" duration="7393000" />
+      <workItem from="1470100323956" duration="8458000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1466983691806</created>
@@ -996,7 +1012,14 @@
       <option name="project" value="LOCAL" />
       <updated>1470101128189</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="XML Classes Added">
+      <created>1470164148861</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1470164148861</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1005,7 +1028,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108274000" />
+    <option name="totallyTimeSpent" value="109339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1934" height="1042" extended-state="0" />
@@ -1386,14 +1409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1410,12 +1425,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding>
+            <element signature="e#1217#1218#0" expanded="true" />
+            <element signature="e#1245#1246#0" expanded="true" />
+            <element signature="e#1281#1282#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/code/graph/Grapher/XML.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3050">
-          <caret line="123" column="79" selection-start-line="123" selection-start-column="79" selection-end-line="123" selection-end-column="79" />
+        <state relative-caret-position="344">
+          <caret line="186" column="9" selection-start-line="186" selection-start-column="9" selection-end-line="186" selection-end-column="9" />
           <folding>
-            <element signature="e#345#354#0" expanded="true" />
+            <element signature="e#397#406#0" expanded="true" />
+            <element signature="e#4314#4320#0" expanded="true" />
           </folding>
         </state>
       </provider>

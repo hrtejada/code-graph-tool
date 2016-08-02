@@ -43,6 +43,11 @@ public class Node extends com.github.javaparser.ast.Node{
         visit = true;
     }
 
+    public void resetVisit()
+    {
+        visit = false;
+    }
+
     public Boolean isVisited(){ return visit;}
 
 }
