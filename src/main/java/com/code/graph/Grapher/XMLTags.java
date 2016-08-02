@@ -32,7 +32,8 @@ public class XMLTags {
         }
         if (type.equalsIgnoreCase("END"))
         {
-            startTag = "\n\t</NODE id = '" + id + "'>";
+            startTag = "\n\t</END_NODE id = '" + id + "'>";
+            endTag = "\n\t</END_NODE id = '" + id + "'>";
         }
     }
 

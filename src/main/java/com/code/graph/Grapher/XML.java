@@ -8,23 +8,56 @@ import java.util.Stack;
  */
 public class XML {
 
-    File newFile = new File("C:\\Users\\Daniel\\Desktop\\test");
-    PrintWriter printWriter = new PrintWriter(newFile);
+    private final File newFile = new File("C:\\Users\\Daniel\\Desktop\\test");
+
+    private FileWriter fw;
+    private BufferedWriter bw;
 
     private CFG cfg;
-    private Stack<String> endTags = new Stack<String>();
+    private Stack<XMLTags> endTags = new Stack<XMLTags>();
 
-    String finalString = "";
+    private XMLTags currTag;
 
-    public static void main(String[] args)
-    {
-        Node start = new Node();
-        Node end = new Node();
+//    public static void main(String[] args)
+//    {
+//        try {
+//            new XML();
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
-        CFGBuilder cfg = new CFG(start, end);
-
-    }
-
+//    public XML()
+//    {
+//        Node start = new Node(11);
+//        Node end = new Node(12);
+//
+//        CFG cfg = new CFG();
+//        cfg.setEndNode(end);
+//        cfg.setStartNode(start);
+//
+//        Node node1 = new Node(1);
+//        Node node2 = new Node(2);
+//        Node node3 = new Node(3);
+//        Node join = new Node(0);
+//
+//        start.addEdgeGoingTo(node1);
+//
+//        node1.addEdgeGoingTo(node2);
+//        node1.addEdgeGoingTo(node3);
+//
+//        node2.addEdgeGoingTo(join);
+//
+//        node3.addEdgeGoingTo(join);
+//
+//        join.addEdgeGoingTo(end);
+//
+//        this.cfg = cfg;
+//
+//        createXML();
+//    }
 
     public XML(CFG cfg) throws FileNotFoundException {
         this.cfg = cfg;
@@ -32,42 +65,53 @@ public class XML {
 
     public void createXML()
     {
+        createFile();
+
         goThroughCFG(cfg.getStartNode());
 
-        //pop off endTag
-//        String endTag = endTags.pop();
-
-        //wirte the endtag to document
-//        finalString = finalString + endTag;
-
-        finalString = finalString + endTags.pop();
-        System.out.print(finalString + "\n\n\n");
-
-        printWriter.print(finalString);
-
-        print();
+        while(!endTags.isEmpty())
+        {
+            currTag = endTags.pop();
+            printLine(currTag.getEndTag());
+        }
+        closeWriter();
     }
 
-    private void print()
+    private void createFile()
     {
-        try {
-
-            //String content = "This is the content to write into file";
-
-            //File file = new File("/users/mkyong/filename.txt");
-
+        try
+        {
             // if file doesnt exists, then create it
             if (!newFile.exists()) {
                 newFile.createNewFile();
             }
 
-            FileWriter fw = new FileWriter(newFile.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(finalString);
+            fw = new FileWriter(newFile.getAbsoluteFile());
+            bw = new BufferedWriter(fw);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void closeWriter()
+    {
+        try
+        {
             bw.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-            System.out.println("Done");
-
+    private void printLine(String line)
+    {
+        try
+        {
+            bw.write(line);
+            bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,60 +119,52 @@ public class XML {
 
     private void goThroughCFG(Node currNode)
     {
-        System.out.print(finalString + "\n\n\n");
-        if (currNode.getGoingToTransitions().isEmpty()) //empty Node
+        if (currNode.getGoingToTransitions().isEmpty()) //END empty Node
         {
-            XMLTags endNode = new XMLTags(currNode.getLineNumbers().toString(), "END");
-//                String finalTag = endTags.pop();
-            finalString = finalString + endNode.getStartTag();
+            currTag = new XMLTags(currNode.getLineNumbers().toString(), "END");
+            endTags.push(currTag);
 
         }
-        else if (currNode == cfg.getStartNode())
+        else if (currNode == cfg.getStartNode()) //START Node
         {
             XMLTags startNode = new XMLTags(currNode.getLineNumbers().toString(), "CFG");
-            endTags.push(startNode.getEndTag());
-            finalString = finalString + startNode.getStartTag();
+            endTags.push(startNode);
+            printLine(startNode.getStartTag());
 
             goThroughCFG(currNode.getGoingToTransitions().get(0).getToNode());
         }
-        else
-        {
+        else {
             XMLTags nodeTag = new XMLTags(currNode.getLineNumbers().toString(), "NODE");
-            endTags.push(nodeTag.getEndTag());
-            finalString = finalString + nodeTag.getStartTag();
+            endTags.push(nodeTag);
+            printLine(nodeTag.getStartTag());
 
-            Node firstNode = currNode.getGoingToTransitions().get(0).getToNode();
-            XMLTags firstTag = new XMLTags(firstNode.getLineNumbers().toString(),"EDGE");
-            endTags.push(firstTag.getEndTag());
-            finalString = finalString + firstTag.getStartTag() + endTags.pop();
-
+            Node firstNode;
             Node secondNode = null;
-            if (currNode.getGoingToTransitions().size() > 1)
+
+            firstNode = currNode.getGoingToTransitions().get(0).getToNode();
+            currTag = new XMLTags(firstNode.getLineNumbers().toString(), "EDGE");
+            printLine(currTag.getStartTag() + currTag.getEndTag());
+
+            if (currNode.getGoingToTransitions().size() > 1)//there is a second edge
             {
                 secondNode = currNode.getGoingToTransitions().get(1).getToNode();
-                XMLTags secondTag = new XMLTags(secondNode.getLineNumbers().toString(),"EDGE");
-                endTags.push(secondTag.getEndTag());
-                finalString = finalString + secondTag.getStartTag() + endTags.pop();
+                currTag = new XMLTags(secondNode.getLineNumbers().toString(), "EDGE");
+                printLine(currTag.getStartTag() + currTag.getEndTag());
             }
 
 
-            finalString = finalString +  endTags.pop();
+            currTag = endTags.pop();
+            printLine(currTag.getEndTag());
 
-            goThroughCFG(firstNode);
-            if (secondNode != null)
+            if(!firstNode.isVisited()) {
+                goThroughCFG(firstNode);
+            }
+            if (secondNode != null && !secondNode.isVisited())
+            {
                 goThroughCFG(secondNode);
+            }
 
+            currNode.visit();
         }
-
-    }
-
-    private void createCFGTag()
-    {
-        XMLTags cfgTag = new XMLTags(cfg.getStartNode().getLineNumbers().toString(), "CFG");
-
-        //write the first tag to document
-        finalString = cfgTag.getStartTag() + "\n";
-
-        endTags.push(cfgTag.getEndTag());
     }
 }
