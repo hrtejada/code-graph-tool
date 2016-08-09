@@ -31,9 +31,8 @@ public class CFGdirector {
         }
 
         builder.buildEnd(currNode);
-        builder.createXML();
+        builder.outputToFile();
         //builder.printTree(builder.getCFG().getStartNode());
-        System.out.println(" End");
     }
 
     public Boolean isConditional(Statement statement) {

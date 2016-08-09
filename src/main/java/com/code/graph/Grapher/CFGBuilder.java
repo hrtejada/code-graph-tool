@@ -24,14 +24,7 @@ public interface CFGBuilder  {
 
     Node forHandler(BlockStmt forBlock, Node start);
 
-    void printStatements(List<Statement> statements);
-
-    //This method will be removed. ONly here to show that program parses and grabs statements appropriatley.
-    void printContents(BlockStmt method);
-
-    void printTree(Node start);
-
-    void createXML();
+    void outputToFile();
 
     CFG getCFG();
 

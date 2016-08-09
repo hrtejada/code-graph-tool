@@ -29,12 +29,10 @@ public class Visitor extends VoidVisitorAdapter {
         //Builds a CFG for each method visited
         CFG newCFG = new CFG();
         CFGBuilder graph = new concreteCFG(newCFG);
-        System.out.println(n.getDeclarationAsString());
-        System.out.println();
 
         CFGdirector director = new CFGdirector(graph);
         director.buildCFG(block);
-        //graph.createXML();
+        //graph.outputToFile();
         super.visit(n, arg); //Makes a note of the methods visited by marking them through VoidVisitorAdapter
 
 

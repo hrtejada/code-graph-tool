@@ -1,6 +1,6 @@
 package com.code.graph.Grapher;
 
-import com.code.graph.XML;
+import com.code.graph.Visualizer;
 import com.github.javaparser.ast.stmt.*;
 
 import java.io.FileNotFoundException;
@@ -98,7 +98,6 @@ public class concreteCFG implements CFGBuilder {
 
             else {
                 BlockStmt newIfBlock = (BlockStmt) ((IfStmt) statement).getThenStmt();
-                System.out.println(newIfBlock.getBeginLine());
                 joinNodes.push(ifElseHandler(newIfBlock, currNode));
 
 
@@ -123,7 +122,6 @@ public class concreteCFG implements CFGBuilder {
 
                         //Get if then statement and send to if handler.
                         BlockStmt elseIfStmt = (BlockStmt) ((IfStmt)elsePart).getThenStmt();
-                        System.out.println(elseIfStmt.getBeginLine());
 
                         Node elseIfStartNode = new Node(elseIfStmt.getBeginLine());
                         ifStartNode.addEdgeGoingTo(elseIfStartNode);
@@ -153,22 +151,16 @@ public class concreteCFG implements CFGBuilder {
         }
 
         else{
-            System.out.println(statement.getBeginLine());
-            System.out.println(statement.toString());
+            //What condition is this?
         }
         return currNode;
     }
 
     public Node ifElseHandler(BlockStmt ifBlock, Node ifStart) {
-        System.out.println("In ifHandler method");
-        System.out.println(ifBlock.toString());
         List<Statement> statements = ifBlock.getStmts();
 
         Node currNode = new Node();
         ifStart.addEdgeGoingTo(currNode);
-
-        printStatements(statements);//For testing, remove later
-        System.out.println();
 
         for(Statement statement : statements){
             if(isConditional(statement)){
@@ -185,10 +177,6 @@ public class concreteCFG implements CFGBuilder {
         Node expressionNode = new Node(ifBlock.getBeginLine());
         ifStart.addEdgeGoingTo(expressionNode);
 
-        System.out.println("In ifHandler (Exprs) method");//Testing
-        System.out.println(ifBlock.getExpression());//For testing, remove later.
-        System.out.println();
-
         return cfg.joinNodes(ifStart, expressionNode);
     }
 
@@ -201,10 +189,6 @@ public class concreteCFG implements CFGBuilder {
         Node expressionNode = new Node(expressionFor.getExpression().getBeginLine());
         currNode.addEdgeGoingTo(expressionNode);//Becase there is only one expression, this node loops back to beginning.
         expressionNode.addEdgeGoingTo(forHead);//Loops back
-
-        System.out.println("In forHandler (Exprs) method");
-        System.out.println(expressionFor.getExpression());//For testing, remove later.
-        System.out.println();
 
         Node afterHead = new Node();
         forHead.addEdgeGoingTo(afterHead);
@@ -221,12 +205,6 @@ public class concreteCFG implements CFGBuilder {
         Node currNode = firstStatementNode;//separate head so it does not get lost.
 
 
-        System.out.println("In forHandler method");
-        System.out.println(forBlock.getBeginLine());
-
-        printStatements(statements);//For testing, remove later
-        System.out.println();
-
         for(Statement currStatement : statements){
             if(isConditional(currStatement)){
                 currNode = handleConditional(currStatement, currNode);//Build something
@@ -242,108 +220,10 @@ public class concreteCFG implements CFGBuilder {
 
     }
 
-    public void printStatements(List<Statement> statements){
-        int x = 1;
-        for(Statement currStatement : statements){
-            System.out.println("Statemnt number " + x + ": ");
-            System.out.println(currStatement.getBeginLine());
-            System.out.println(currStatement.toString());
-            x++;
-        }
-    }//Will be removed later.
-
-    //This method will be removed. ONly here to show that program parses and grabs statements appropriatley.
-    public void printContents(BlockStmt method){
-        List<Statement> statements = method.getStmts();
-
-
-        for(Statement statement: statements){
-            if(statement instanceof ForStmt){
-                System.out.println("For Statement:");
-                ForStmt stmt = (ForStmt) statement;
-                System.out.println("Initial statement:");
-                System.out.println(stmt.getInit());
-                System.out.println("Compare statement:");
-                System.out.println(stmt.getCompare());
-                System.out.println("Update statement:");
-                System.out.println(stmt.getUpdate());
-                System.out.println("Body:");
-                System.out.println(stmt.getBody());
-                System.out.println();
-
-            }
-            else if(statement instanceof IfStmt){
-                System.out.println("If Statement:");
-                IfStmt stmt = (IfStmt) statement;
-                System.out.println("Conditional statement:");
-                System.out.println(stmt.getCondition());
-                System.out.println("If then statement:");
-                System.out.println(stmt.getThenStmt());
-                System.out.println("Else statement:");
-                System.out.println(stmt.getElseStmt());
-                System.out.println();
-            }
-            else if(statement instanceof WhileStmt){
-                System.out.println("While loop statement:");
-                WhileStmt stmt = (WhileStmt) statement;
-                System.out.println("Conditional statement:");
-                System.out.println(stmt.getCondition());
-                System.out.println("Body statement:");
-                System.out.println(stmt.getBody());
-                System.out.println();
-            }
-            else{
-                System.out.println("Statement:");
-                System.out.println(statement);
-                System.out.println();
-            }
-        }
-    }
-
-    public void printTree(Node start){
-        Node currNode = start;
-        Node prev;
-
-        if(currNode.isVisited() == true || currNode.getGoingToTransitions().isEmpty()){
-            return;
-        }
-        else{
-            currNode.visit();
-            for(int y = 0; y < currNode.getGoingToTransitions().size(); y++){
-                System.out.print('"');
-                for(int x = 0; x < currNode.getLineNumbers().size(); x++){
-                    if (x > 0) {
-                        System.out.print(",");
-
-                    }
-                    System.out.print(currNode.getLineNumbers().get(x));
-                }
-                System.out.print('"');
-
-                System.out.print(" -> ");
-
-                System.out.print('"');
-                prev = currNode;
-                currNode = prev.getGoingToTransitions().get(y).getToNode();
-                for(int x = 0; x < currNode.getLineNumbers().size(); x++){
-                    if (x > 0) {
-                        System.out.print(",");
-
-                    }
-                    System.out.print(currNode.getLineNumbers().get(x));
-                }
-                System.out.print('"');
-                System.out.println();
-                printTree(currNode);
-                currNode = prev;
-            }
-        }
-    }
-
-    public void createXML() {
+    public void outputToFile() {
         try {
-            XML xml = new XML(getCFG());
-            xml.createXML();
+            Visualizer visual = new Visualizer(getCFG());
+            visual.createDot();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
