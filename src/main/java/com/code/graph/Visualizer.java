@@ -12,8 +12,11 @@ import java.util.Stack;
  */
 public class Visualizer {
 
-    private final File xmlFile = new File("/Users/Beto/Desktop/cfg.xml");
-    private final File dotFile = new File("/Users/Beto/Desktop/cfg.dot");
+    private String path = "/Users/Beto/Desktop/";
+    private String xmlFileName;
+    private String dotFileName;
+    private File xmlFile;
+    private File dotFile;
 
     private FileWriter fw;
     private BufferedWriter bw;
@@ -25,6 +28,10 @@ public class Visualizer {
 
 
     public Visualizer(CFG cfg) throws FileNotFoundException {
+        xmlFileName = cfg.getStartNode().getCFGName() + ".xml";
+        dotFileName = cfg.getStartNode().getCFGName() + ".dot";
+        xmlFile = new File(path+xmlFileName);
+        dotFile = new File(path+dotFileName);
         this.cfg = cfg;
     }
 
@@ -86,8 +93,6 @@ public class Visualizer {
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
             }
-
-            System.exit(0);
         }
         catch (IOException e) {
             System.out.println("exception happened - here's what I know: ");

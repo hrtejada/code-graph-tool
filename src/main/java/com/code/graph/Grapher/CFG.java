@@ -10,7 +10,7 @@ import java.util.*;
  * This class is an adaptee of the graphAdapter class.
  */
 public class CFG implements CFGstructure{
-    private Node StartNode;
+    private startNode StartNode;
     private Node EndNode;
     private Node currNode;
     private static int joinCounter = 0;
@@ -19,7 +19,7 @@ public class CFG implements CFGstructure{
     }
 
     public void setStartNode(Node start){
-        StartNode = start;
+        StartNode = (startNode) start;
     }
 
     public void setEndNode(Node end) {
@@ -46,7 +46,7 @@ public class CFG implements CFGstructure{
         }
     }
 
-    public Node getStartNode(){
+    public startNode getStartNode(){
         return StartNode;
     }
 

@@ -1,5 +1,6 @@
 package com.code.graph.Grapher;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.*;
 
 import java.io.FileNotFoundException;
@@ -16,10 +17,11 @@ public class CFGdirector {
         this.builder = newBuilder;
     }
 
-    public void buildCFG(BlockStmt method) {
+    public void buildCFG(MethodDeclaration m) {
+        BlockStmt method = m.getBody();
         List<Statement> statements = method.getStmts();
         Node currNode = new Node();
-        builder.buildStart(method, currNode);
+        builder.buildStart(method, currNode, m);
 
         for(Statement statement: statements){
             if(isConditional(statement) == true) {
@@ -32,7 +34,6 @@ public class CFGdirector {
 
         builder.buildEnd(currNode);
         builder.outputToFile();
-        //builder.printTree(builder.getCFG().getStartNode());
     }
 
     public Boolean isConditional(Statement statement) {

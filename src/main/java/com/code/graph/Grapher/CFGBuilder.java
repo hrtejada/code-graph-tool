@@ -1,5 +1,6 @@
 package com.code.graph.Grapher;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.*;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface CFGBuilder  {
 
-    void buildStart(BlockStmt method, Node next);
+    void buildStart(BlockStmt method, Node next, MethodDeclaration m);
 
     void buildEnd(Node last);
 

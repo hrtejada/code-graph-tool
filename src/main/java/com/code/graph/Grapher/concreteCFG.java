@@ -1,6 +1,7 @@
 package com.code.graph.Grapher;
 
 import com.code.graph.Visualizer;
+import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.*;
 
 import java.io.FileNotFoundException;
@@ -36,9 +37,9 @@ public class concreteCFG implements CFGBuilder {
         }
     }
 
-    public void buildStart(BlockStmt method, Node next){
+    public void buildStart(BlockStmt method, Node next, MethodDeclaration m){
         if(cfg.startNodeSet() == false){
-            startNode startNode = new startNode(method, next);
+            startNode startNode = new startNode(method, next, m);
             cfg.setStartNode(startNode);
         }
     }
